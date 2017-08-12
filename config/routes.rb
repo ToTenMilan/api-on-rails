@@ -1,6 +1,9 @@
 require 'api_constraints'
 
 Rails.application.routes.draw do
+  devise_for :users
+  root to: "home#index"
+
   namespace :api, defaults: { format: :json },
                   constraints: { subdomain: 'api' },
                   path: '/' do # namespace as the folder in app/controllers/api # check available MIME types by typing `$ Mime::SET.collect(&:to_s)

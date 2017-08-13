@@ -69,5 +69,6 @@ RSpec.configure do |config|
 
   # expectations.syntax = :should
 
+  config.include Devise::Test::ControllerHelpers, type: :controller
 
 end

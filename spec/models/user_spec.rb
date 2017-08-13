@@ -5,11 +5,11 @@ RSpec.describe User do
 
   subject { @user }
 
-  it { should respond_to(:email) }
-  it { should respond_to(:password) }
+  it { should respond_to(:email) } # like @user.email
+  it { should respond_to(:password) } # like @user.password
   it { should respond_to(:password_confirmation) }
 
-  it { should be_valid }
+  it { should be_valid } # this method saves the @user setting it's id
 
   describe "when email is not present" do
     # without shoulda-matchers

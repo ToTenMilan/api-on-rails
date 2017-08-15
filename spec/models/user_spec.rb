@@ -12,6 +12,8 @@ RSpec.describe User do
 
   it { should be_valid } # this method saves the @user setting it's id
 
+  it { should have_many(:products) }
+
   describe "when email is not present" do
     # without shoulda-matchers
     # before { @user.email = " " }
@@ -42,4 +44,18 @@ RSpec.describe User do
     end
   end
 
+  describe "#products association" do
+    before do
+      @user.save
+      3.times { FactoryGirl.create :product, user: @user }
+    end
+
+    it "destroys associated products on self destruct" do
+      products = @user.products
+      @user.destroy
+      products.each do |product|
+        expect(Product.find(product)).to raise_error ActiveRecord::RecordNotFound
+      end
+    end
+  end
 end

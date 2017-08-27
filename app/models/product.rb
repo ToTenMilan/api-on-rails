@@ -14,6 +14,8 @@ class Product < ApplicationRecord
   scope :recent, -> {
     order(:updated_at)
   }
+  has_many :placements
+  has_many :orders, through: :placements
 
   def self.search(params = {})
     products = params[:product_ids].present? ? Product.find(params[:product_ids]) : Product.all

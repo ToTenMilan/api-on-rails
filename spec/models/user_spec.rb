@@ -13,6 +13,7 @@ RSpec.describe User do
   it { should be_valid } # this method saves the @user setting it's id
 
   it { should have_many(:products) }
+  it { should have_many(:orders) }
 
   describe "when email is not present" do
     # without shoulda-matchers

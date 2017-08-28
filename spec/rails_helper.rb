@@ -4,6 +4,9 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'shoulda/matchers'
 
+require 'email_spec'
+# require 'email_spec/rspec'
+
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
     with.test_framework :rspec
@@ -75,6 +78,10 @@ RSpec.configure do |config|
   config.include Request::JsonHelpers, type: :controller
 
   config.include Request::HeadersHelpers, type: :controller
+
+  # gem `email_spec`
+  config.include(EmailSpec::Helpers)
+  config.include(EmailSpec::Matchers)
 
   # config.include Devise::TestHelpers, type: :controller
 

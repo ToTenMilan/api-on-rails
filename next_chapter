@@ -1,1 +1,7 @@
-7.6.2
+8.5 def create
+
+fix deprecations
+write about
+  require 'email_spec/rspec'
+and refer to
+  https://github.com/email-spec/email-spec/ (RSpec 3.1+)

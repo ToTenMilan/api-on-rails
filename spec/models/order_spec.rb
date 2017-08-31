@@ -38,7 +38,7 @@ RSpec.describe Order, type: :model do
     end
 
     it "builds 2 placements for the order" do
-      expect{order.build_placements_with_product_ids_and_quantities(@product_ids_and_quantities)}.to change{order.placements.size}.from(0).to(2)
+      expect { order.build_placements_with_product_ids_and_quantities(@product_ids_and_quantities) }.to change { order.placements.size }.from(0).to(2)
     end
   end
 end

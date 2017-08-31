@@ -74,7 +74,7 @@ RSpec.configure do |config|
 
   config.include Devise::Test::ControllerHelpers, type: :controller
 
-  #Including to test requests
+  # Including to test requests
   config.include Request::JsonHelpers, type: :controller
 
   config.include Request::HeadersHelpers, type: :controller
@@ -87,6 +87,28 @@ RSpec.configure do |config|
 
   config.before(:each, type: :controller) do
     include_default_accept_headers
+  end
+
+  config.use_transactional_fixtures = false
+
+  # gem database_cleaner
+  # config.before(:suite) do
+  #   DatabaseCleaner.strategy = :truncation
+  # end
+
+  # config.before(:each) do
+  #   DatabaseCleaner.start
+  # end
+
+  # config.after(:each) do
+  #   DatabaseCleaner.clean
+  # end
+
+  config.around(:each) do |example|
+    ActiveRecord::Base.transaction do
+      example.run
+      raise ActiveRecord::Rollback
+    end
   end
 
 end

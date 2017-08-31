@@ -22,7 +22,7 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
 
   describe "GET #index" do
     before(:each) do
-      4.times { FactoryGirl.create :product }
+      @products_count = 4.times { FactoryGirl.create :product }
     end
 
     context "when is not receiving any product_ids parameter" do
@@ -32,7 +32,7 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
 
       it "returns 4 records from the database" do
         products_response = json_response[:products]
-        expect(products_response).to have(4).items
+        expect(products_response).to have(@products_count).items
       end
 
       it "returs the user object into each product" do
